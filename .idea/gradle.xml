@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:\develop\android-studio\gradle\gradle-2.4" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libcm" />
+            <option value="$PROJECT_DIR$/libqr" />
+            <option value="$PROJECT_DIR$/libtest" />
+            <option value="$PROJECT_DIR$/libupdate" />
+            <option value="$PROJECT_DIR$/libvollery" />
+            <option value="$PROJECT_DIR$/libwin" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

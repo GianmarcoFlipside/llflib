@@ -1,0 +1,17 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="LLFTheme" parent="LLFBase.V4" />
+    <style name="LLFBase.V4" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="ItemLayoutStyle">@style/Widget.ItemStyle</item>
+    </style>
+
+    <style name="Widget.ItemStyle" parent="android:Widget">
+        <item name="android:text">?android:attr/textAppearanceMedium</item>
+        <item name="android:hint">?android:attr/textAppearanceSmall</item>
+        <item name="android:minHeight">@dimen/list_text_item</item>
+    </style>
+</resources>

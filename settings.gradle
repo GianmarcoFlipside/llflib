@@ -1,0 +1,1 @@
+include ':app','libcm','libqr','libtest','libupdate','libvollery','libwin'

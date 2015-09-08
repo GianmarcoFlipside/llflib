@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.llf.lib"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.llf.lib.cm.CmActivity" android:label="@string/act_cm">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".qr.QRActivity" android:label="@string/act_qr">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".test.TestActivity" android:label="@string/act_test">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".update.UpActivity" android:label="@string/act_update">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".vollery.VolleryActivity" android:label="@string/act_vollery">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".win.WinActivity" android:label="@string/act_win">
+            <intent-filter>
+                <action android:name="com.llf.lib.EXAMPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

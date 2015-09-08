@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common-->
+    <dimen name="list_text_item">48dp</dimen>
+    <!-- margin-->
+    <dimen name="margin">16dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginLarge">24dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="up_check_error">升级失败，请查看网络</string>
+    <string name="up_down_error">下载失败，请查看网络</string>
+    <string name="up_check_news">己是最新版本</string>
+    <string name="up_down_trick">开始下载升级包</string>
+    <string name="up_down_finish">下载完成</string>
+    <string name="up_down_store">请确保有足够的存储空间下载新版本</string>
+</resources>

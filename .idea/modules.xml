@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libcm/libcm.iml" filepath="$PROJECT_DIR$/libcm/libcm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libqr/libqr.iml" filepath="$PROJECT_DIR$/libqr/libqr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libtest/libtest.iml" filepath="$PROJECT_DIR$/libtest/libtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libupdate/libupdate.iml" filepath="$PROJECT_DIR$/libupdate/libupdate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libvollery/libvollery.iml" filepath="$PROJECT_DIR$/libvollery/libvollery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libwin/libwin.iml" filepath="$PROJECT_DIR$/libwin/libwin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/llflib.iml" filepath="$PROJECT_DIR$/llflib.iml" />
+    </modules>
+  </component>
+</project>

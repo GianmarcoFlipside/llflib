@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">llflib</string>
+
+    <string name="act_cm">基础组件</string>
+    <string name="act_qr">二维码</string>
+    <string name="act_test">测试工具类</string>
+    <string name="act_update">检测升级</string>
+    <string name="act_vollery">Vollery框架</string>
+    <string name="act_win">Win风格组件</string>
+
+    <!-- common-->
+    <string name="cm_desc">常用类</string>
+    <!-- QR-->
+    <string name="qr_desc">启动二维码扫描</string>
+</resources>

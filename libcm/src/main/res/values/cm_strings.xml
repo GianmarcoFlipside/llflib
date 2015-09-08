@@ -1,0 +1,9 @@
+<resources>
+    <string name="llf_state_wait">Waiting…</string>
+    <string name="llf_state_loading">Loading…</string>
+    <string name="llf_hit_empty">Nothing</string>
+    <string name="llf_hit_pull">Pull up to loading</string>
+    <string name="llf_hit_release">Release to loading</string>
+    <string name="llf_hit_more">Click to load more</string>
+    <string name="llf_hit_failed">Load failed,Click to retry</string>
+</resources>
