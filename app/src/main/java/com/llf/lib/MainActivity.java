@@ -38,7 +38,7 @@ public class MainActivity extends ToolbarActivity {
                 if (obj == null || !(obj instanceof ResolveInfo))
                     return;
                 ResolveInfo info = (ResolveInfo) obj;
-                ComponentName cn = new ComponentName(getPackageName(), info.activityInfo.targetActivity);
+                ComponentName cn = new ComponentName(info.activityInfo.packageName,info.activityInfo.name);
                 Intent it = new Intent();
                 it.setComponent(cn);
                 it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
