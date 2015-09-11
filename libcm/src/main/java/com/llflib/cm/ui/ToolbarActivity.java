@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.llflib.cm.R;
 import com.llflib.cm.ui.view.RevealView;
+import com.llflib.cm.util.Views;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,7 @@ public abstract class ToolbarActivity extends AppCompatActivity{
             setSupportActionBar(toolbar);
         }
         setupViews();
+        Views.setApplyWindowInserts(this);
     }
 
     protected abstract void setupViews();

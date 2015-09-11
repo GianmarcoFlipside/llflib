@@ -1,12 +1,8 @@
 package com.llflib.cm.net;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.message.BasicNameValuePair;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;

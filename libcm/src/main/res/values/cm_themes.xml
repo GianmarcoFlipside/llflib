@@ -7,11 +7,19 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="ItemLayoutStyle">@style/Widget.ItemStyle</item>
+        <item name="android:background">#ececec</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:textColorSecondary">#333</item>
+        <item name="android:textColorTertiary">#7c7c7c</item>
+        <item name="editTextColor">?android:attr/textColorSecondary</item>
+        <item name="android:textColorHint">?android:attr/textColorTertiary</item>
     </style>
 
     <style name="Widget.ItemStyle" parent="android:Widget">
-        <item name="android:text">?android:attr/textAppearanceMedium</item>
-        <item name="android:hint">?android:attr/textAppearanceSmall</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="subtitleTextAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:minHeight">@dimen/list_text_item</item>
+        <item name="android:paddingLeft">@dimen/margin</item>
+        <item name="android:paddingRight">@dimen/margin</item>
     </style>
 </resources>

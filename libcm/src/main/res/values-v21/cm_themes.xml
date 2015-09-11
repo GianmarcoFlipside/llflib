@@ -3,5 +3,6 @@
     <style name="LLFTheme" parent="LLFBase.V4">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryDark</item>
     </style>
 </resources>
