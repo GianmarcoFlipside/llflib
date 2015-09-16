@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.llflib.cm.R;
 
@@ -101,5 +102,34 @@ public class Views {
             }
         });
         parent.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static void setApplyWindowInsertEmpty(Activity act){
+        final ViewGroup parent = (ViewGroup) act.findViewById(android.R.id.content);
+        if (Build.VERSION.SDK_INT < 21 || parent == null || parent.getChildCount() == 0)
+            return;
+        View child = parent.getChildAt(0);
+        if(!child.getFitsSystemWindows())
+            return;
+        final Resources.Theme theme = act.getTheme();
+        final TypedValue outValue = new TypedValue();
+        theme.resolveAttribute(android.R.attr.windowDrawsSystemBarBackgrounds, outValue, true);
+        if (outValue.data == 0)
+            return;
+        theme.resolveAttribute(android.R.attr.statusBarColor, outValue, true);
+        if (outValue.data != 0)
+            return;
+        theme.resolveAttribute(R.attr.colorPrimaryDark, outValue, true);
+        if (outValue.data == 0 || (outValue.data & 0xFFFFFF) == 0)
+            return;
+        if (child.getClass().getName().contains("android.support.design"))
+            return;
+        View view = parent.findViewById(android.R.id.statusBarBackground);
+        if(view != null){
+            parent.removeView(view);
+            View content = parent.getChildAt(0);
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) content.getLayoutParams();
+            lp.topMargin = 0;
+        }
     }
 }

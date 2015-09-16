@@ -4,15 +4,28 @@
     <style name="LLFBase.V4" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="ItemLayoutStyle">@style/Widget.ItemStyle</item>
-        <item name="android:background">#ececec</item>
+        <item name="android:colorBackground">#ececec</item>
         <item name="android:textColorPrimary">#000</item>
         <item name="android:textColorSecondary">#333</item>
         <item name="android:textColorTertiary">#7c7c7c</item>
-        <item name="editTextColor">?android:attr/textColorSecondary</item>
-        <item name="android:textColorHint">?android:attr/textColorTertiary</item>
+        <!--<item name="editTextColor">?android:attr/textColorSecondary</item>-->
+        <!--<item name="android:textColorHint">?android:attr/textColorTertiary</item>-->
+        <item name="toolbarStyle">@style/LLF.ToolbarStyle</item>
+        <item name="colorControlNormal">?android:attr/textColorPrimaryInverse</item>
+    </style>
+
+    <style name="LLF.ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextAppearance">@style/LLF.Toolbar.TitleTextAppearance</item>
+        <item name="subtitleTextAppearance">@style/LLF.Toolbar.SubTitleTextAppearance</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+    <style name="LLF.Toolbar.TitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
+    <style name="LLF.Toolbar.SubTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
 
     <style name="Widget.ItemStyle" parent="android:Widget">

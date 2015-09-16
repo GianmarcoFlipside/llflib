@@ -69,12 +69,16 @@ public abstract class ToolbarActivity extends AppCompatActivity{
         super.setContentView(layoutResID);
         View v = findViewById(android.R.id.content);
         if(v!= null) v.setBackgroundColor(mGround.data);
+        setupActionBarIfExist();
+        setupViews();
+//        Views.setApplyWindowInserts(this);
+    }
+
+    protected void setupActionBarIfExist(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if(toolbar != null){
             setSupportActionBar(toolbar);
         }
-        setupViews();
-        Views.setApplyWindowInserts(this);
     }
 
     protected abstract void setupViews();
