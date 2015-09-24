@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="com.ccdfs.shop.ui.BrowserAct" android:id="@+id/layout_root" android:orientation="vertical">
-    <include layout="@layout/layout_title" />
+    <include layout="@layout/cm_layout_title" />
     <ProgressBar android:layout_width="match_parent" android:layout_height="1dp"
         android:id="@+id/progress" style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 </LinearLayout>

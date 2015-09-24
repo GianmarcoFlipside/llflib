@@ -71,7 +71,6 @@ public abstract class ToolbarActivity extends AppCompatActivity{
         if(v!= null) v.setBackgroundColor(mGround.data);
         setupActionBarIfExist();
         setupViews();
-//        Views.setApplyWindowInserts(this);
     }
 
     protected void setupActionBarIfExist(){
