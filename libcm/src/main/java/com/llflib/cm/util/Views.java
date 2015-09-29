@@ -27,6 +27,7 @@ import timber.log.Timber;
  * Created by llf on 2015/8/31.
  */
 public class Views {
+
     public static int getDimenPx(Context ctx, int value) {
         return getDimenPx(ctx, value, TypedValue.COMPLEX_UNIT_DIP);
     }

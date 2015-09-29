@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
+import timber.log.Timber;
+
 /**
  * @author llfer 2015/3/25
  */
@@ -39,7 +41,7 @@ public class Files {
             oos.close();
             return true;
         } catch (IOException e) {
-            ILog.w(TAG,"Object To File faild, msg "+e.getMessage());
+            Timber.w(TAG, "Object To File faild, msg " + e.getMessage());
         }
         return false;
     }
@@ -53,7 +55,7 @@ public class Files {
             ois.close();
             return o;
         } catch (Exception e) {
-            ILog.w(TAG,"Object read from file faild,msg "+e.getMessage());
+            Timber.w(TAG,"Object read from file faild,msg "+e.getMessage());
         }
         return null;
     }
@@ -77,7 +79,7 @@ public class Files {
             fos.close();
             return true;
         } catch (IOException e) {
-            ILog.w(TAG, "stringToFile faild," + e.getMessage());
+            Timber.w(TAG, "stringToFile faild," + e.getMessage());
         }
         return false;
     }
@@ -89,13 +91,13 @@ public class Files {
         try {
             fis = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            ILog.w(TAG,"stringFromFile notFound File error ",e);
+            Timber.w(TAG,"stringFromFile notFound File error ",e);
             return null;
         }
         try {
             return isToStr(fis,encoding);
         } catch (IOException e) {
-            ILog.w(TAG,"stringFromFile stream to String error ",e);
+            Timber.w(TAG,"stringFromFile stream to String error ",e);
             return null;
         }
     }

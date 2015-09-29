@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.llflib.cm.R;
-import com.llflib.cm.adapter.RecycleBaseAdapter;
 import com.llflib.cm.db.AddressHelper;
 import com.llflib.cm.ui.view.RecycleDecoration;
 import com.llflib.cm.util.Views;
@@ -83,9 +82,9 @@ public class PickAddressAct extends ToolbarActivity {
         mAddressLevel = 0;
         mAddressTv.setText("");
         mAddressTv.setVisibility(View.GONE);
-        mAdapter.setOnItemClickListener(new RecycleBaseAdapter.OnItemClickListener() {
-            @Override public void onItemClick(View v, Object obj) {
-                AddressHelper.Bean bean = (AddressHelper.Bean) obj;
+        mAdapter.setClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                AddressHelper.Bean bean = (AddressHelper.Bean) v.getTag();
                 if (bean.id == null)
                     return;
                 mAddressTv.setVisibility(View.VISIBLE);
@@ -93,7 +92,7 @@ public class PickAddressAct extends ToolbarActivity {
                 mAddressLevel++;
                 if (mAddressLevel == 3) {    //finish
                     Intent data = getIntent();
-                    data.putExtra(Intent.EXTRA_TEXT,mAddressTv.getText().toString());
+                    data.putExtra(Intent.EXTRA_TEXT, mAddressTv.getText().toString());
                     setResult(RESULT_OK, data);
                     finish();
                     return;
@@ -150,9 +149,15 @@ public class PickAddressAct extends ToolbarActivity {
         }
     }
 
-    class AddressAdapter extends RecycleBaseAdapter<AddressHelper.Bean, ViewHolder> {
+    class AddressAdapter extends RecyclerView.Adapter<ViewHolder> {
+        private List<AddressHelper.Bean> mList;
+        private View.OnClickListener mClickListener;
         public AddressAdapter(List<AddressHelper.Bean> l) {
-            super(l);
+            mList = l;
+        }
+
+        public void setClickListener(View.OnClickListener l){
+            mClickListener = l;
         }
 
         public void setNewList(List<AddressHelper.Bean> l) {
@@ -167,11 +172,16 @@ public class PickAddressAct extends ToolbarActivity {
             return mList.get(position).id == null ? 1 : 0;
         }
 
-        @Override protected ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
+        @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             TextView tv = (TextView) inflater.inflate(
                     viewType == 0 ? R.layout.cm_layout_address : R.layout.cm_layout_add_sel, parent, false);
+            tv.setOnClickListener(mClickListener);
             return new ViewHolder(tv);
+        }
+
+        @Override public int getItemCount() {
+            return mList == null ?0:mList.size();
         }
 
         @Override public void onBindViewHolder(ViewHolder holder, int position) {

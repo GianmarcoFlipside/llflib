@@ -5,9 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-import com.llflib.cm.net.LifeTask;
-import com.llflib.cm.net.NetTask;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,7 +13,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Created by 908397 on 2015/2/4.
@@ -51,7 +49,7 @@ public class Nets {
         try {
             u = new URL(url);
         } catch (MalformedURLException e) {
-            ILog.i("loadFile error,msg " + e.getMessage());
+            Timber.i("loadFile error,msg " + e.getMessage());
             return false;
         }
 
@@ -67,35 +65,44 @@ public class Nets {
             fos.close();
             is.close();
         } catch (IOException e) {
-            ILog.i("loadFile save error,msg "+e.getMessage());
+            Timber.i("loadFile save error,msg "+e.getMessage());
             return false;
         }
-        ILog.v("load file sucess,path "+saveFile.getAbsolutePath());
+        Timber.v("load file sucess,path "+saveFile.getAbsolutePath());
         return true;
     }
 
-    public static String format(List<NetTask.Pair> params,String encode){
-        if(params == null || params.isEmpty())
+    public static String appendArgs(String ...args){
+        if(args == null)
             return null;
-        StringBuffer sb = new StringBuffer();
-        for(NetTask.Pair p:params){
-            if(sb.length() > 0){
+        boolean hasUrl = args[0].contains("http");
+        int size = args.length;
+        if(hasUrl?size%2==0:size%2==1)
+            throw new IllegalArgumentException("the args isn't key-value");
+        StringBuffer sb = new StringBuffer(args[0]);
+        if(hasUrl) {
+            if (!args[0].contains("?")) {
+                sb.append("?");
+            } else {
+                if (!args[0].endsWith("?") && !args[0].endsWith("&"))
+                    sb.append("&");
+            }
+        }
+        int start = hasUrl?1:0;
+        for(int i=start;i<size;i+=2){
+            if(i != start)
                 sb.append("&");
-            }
+            sb.append(args[i]).append("=");
             try {
-                sb.append(URLEncoder.encode(p.name,encode));
+                sb.append(URLEncoder.encode(args[i+1],"UTF-8"));
             } catch (UnsupportedEncodingException e) {
-                sb.append(URLEncoder.encode(p.name));
-            }
-            sb.append("=");
-            try {
-                sb.append(URLEncoder.encode(p.value,encode));
-            } catch (UnsupportedEncodingException e) {
-                sb.append(URLEncoder.encode(p.value));
+                //ignore
             }
         }
         return sb.toString();
     }
 
-
+    public static void main(String[] args){
+        appendArgs("sas","asas",null);
+    }
 }

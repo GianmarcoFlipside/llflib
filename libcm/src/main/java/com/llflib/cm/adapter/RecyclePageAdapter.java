@@ -18,23 +18,50 @@ package com.llflib.cm.adapter;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.llflib.cm.ui.pullview.PullRecycleView;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by llf on 2015/7/22.
  */
-public abstract class RecyclePageAdapter<T, VH extends RecyclerView.ViewHolder> extends RecycleBaseAdapter<T, VH> {
+public abstract class RecyclePageAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
     public int mPage;
     protected int mTotalPage;
+    protected List<T> mList;
+    private WeakReference<PullRecycleView> mPullViewReference;
+
     /**
      * @param l  数据集合
      * @param tp 总页数
      * @param cp 当前页
      */
     public RecyclePageAdapter(List<T> l, int tp, int cp) {
-        super(l);
+        mList = l;
         mTotalPage = tp;
         setNewPage(cp);
+    }
+
+    @Override public int getItemCount() {
+        return mList == null ? 0:mList.size();
+    }
+
+    public void addItem(T item){
+        if(mList == null){
+            mList = new ArrayList<>();
+        }
+        mList.add(item);
+        notifyItemInserted(mList.size()-1);
+    }
+
+    public void remove(T item){
+        int idx = mList.indexOf(item);
+        if(idx >= 0){
+            mList.remove(idx);
+            notifyItemRemoved(idx);
+        }
     }
 
     public void addPage(List<T> list, int page) {
@@ -44,10 +71,13 @@ public abstract class RecyclePageAdapter<T, VH extends RecyclerView.ViewHolder> 
         }
         if (mPage < page) {
             setNewPage(page);
-            if (mList == null)
+            if (mList == null) {
                 mList = list;
-            else
+                notifyDataSetChanged();
+            }else {
                 mList.addAll(list);
+                notifyItemRangeChanged(mList.size() - list.size(),list.size());
+            }
         } else {
             if (mList == null || mList.isEmpty()) {
                 mList = list;
@@ -63,11 +93,32 @@ public abstract class RecyclePageAdapter<T, VH extends RecyclerView.ViewHolder> 
                     mList.remove(startId);
                 }
             }
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
     }
 
     protected void setNewPage(int page) {
         mPage = page;
+        PullRecycleView view = getPullView();
+        if (view != null && mTotalPage >= 0 && page >= mTotalPage) {
+            view.setPullMode(PullRecycleView.MODE_PULL_DOWN);
+        }
+    }
+
+    @Override public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        if (recyclerView.getParent() instanceof PullRecycleView) {
+            mPullViewReference = new WeakReference<PullRecycleView>((PullRecycleView) recyclerView.getParent());
+        }
+    }
+
+    @Override public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        mPullViewReference.clear();
+        mPullViewReference = null;
+    }
+
+    protected PullRecycleView getPullView() {
+        if (mPullViewReference == null)
+            return null;
+        return mPullViewReference.get();
     }
 }

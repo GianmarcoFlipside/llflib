@@ -17,6 +17,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import timber.log.Timber;
+
 public class Times {
     private static final String TAG = Times.class.getSimpleName();
     public static final String DEFAULT_FORMAT_12_HOUR = "h:mm a";
@@ -24,7 +26,7 @@ public class Times {
 
     public static CharSequence getDateFormat(Context ctx, int amPmFontSize) {
         final boolean format24Requested = DateFormat.is24HourFormat(ctx);
-        ILog.v("format24Requested " + format24Requested);
+        Timber.v("format24Requested " + format24Requested);
         CharSequence format;
         if (format24Requested) {
             format = get24ModeFormat();
@@ -97,7 +99,7 @@ public class Times {
         if (runInMillis < 1000) {
             runInMillis = 1000;
         }
-        ILog.i("setQuarterHourUpdater millis " + runInMillis);
+        Timber.i("setQuarterHourUpdater millis " + runInMillis);
         handler.removeCallbacks(runnable);
         handler.postDelayed(runnable, runInMillis);
     }
@@ -129,7 +131,7 @@ public class Times {
 
     public static boolean hasAlarm(Context ctx) {
         String str = Settings.System.getString(ctx.getContentResolver(), Settings.System.NEXT_ALARM_FORMATTED);
-        ILog.i("net alarm clock " + str);
+        Timber.i("net alarm clock " + str);
         return !TextUtils.isEmpty(str);
     }
 //

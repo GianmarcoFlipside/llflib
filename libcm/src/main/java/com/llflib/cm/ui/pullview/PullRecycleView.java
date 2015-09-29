@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import com.llflib.cm.util.ILog;
+import timber.log.Timber;
+
 
 /**
  * Created by llf on 2015/8/25.
@@ -138,6 +139,8 @@ public class PullRecycleView extends ViewGroup implements NestedScrollingParent 
     }
 
     public void setRefresh() {
+        if(getScrollY() != 0)
+            return;
         post(new Runnable() {
             @Override public void run() {
                 if (mListView.getChildCount() > 0) {
@@ -212,7 +215,6 @@ public class PullRecycleView extends ViewGroup implements NestedScrollingParent 
 
     void offsetChildrenTopAndBottom(int offset) {
         int scrollY = getScrollY();
-        ILog.i(String.format("[offset:%d --- scrollY:%d]", offset, scrollY));
         if (offset == 0 || (offset > 0 && scrollY >= 0 && (mHeader.isWorking() || mMode == MODE_PULL_DOWN)) || //Pull up
                 (offset < 0 && scrollY <= 0 && //Pull down
                         (mFooter.isWorking() || mFooter.isError() || mMode == MODE_PULL_UP))) {

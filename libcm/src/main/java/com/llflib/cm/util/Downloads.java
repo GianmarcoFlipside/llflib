@@ -28,7 +28,7 @@ import java.net.URLEncoder;
 /**
  * Created by llf on 2015/7/27.
  */
-public class DownloadUtil {
+public class Downloads {
     public static boolean loadAttache(Context ctx,String url,String cookie) {
         //开始下载
         Uri resource = Uri.parse(encode(url));

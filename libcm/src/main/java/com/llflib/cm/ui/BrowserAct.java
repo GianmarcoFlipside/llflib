@@ -20,7 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.llflib.cm.R;
-import com.llflib.cm.util.ILog;
+import com.llflib.cm.util.Views;
+
+import timber.log.Timber;
 
 public class BrowserAct extends ToolbarActivity {
 
@@ -30,11 +32,7 @@ public class BrowserAct extends ToolbarActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_act_brower);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setHomeAsUpIndicator(R.drawable.cm_ic_left);
-        setupViews();
-        loadWeb(getIntent());
+        Views.setApplyWindowInserts(this);
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -50,6 +48,12 @@ public class BrowserAct extends ToolbarActivity {
     }
 
     protected void setupViews() {
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeAsUpIndicator(R.drawable.cm_ic_left);
+        setupViews();
+        loadWeb(getIntent());
+
         WebView webView = new WebView(getApplication());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, 0, 1);
         ((ViewGroup) findViewById(R.id.layout_root)).addView(webView, lp);
@@ -67,7 +71,7 @@ public class BrowserAct extends ToolbarActivity {
     }
 
     private void syncCookieIfNeed(Uri uri){
-        ILog.i("schema:" + uri.getScheme() + ",author:" + uri.getAuthority() + ",Path:" + uri.getPath() +
+        Timber.i("schema:" + uri.getScheme() + ",author:" + uri.getAuthority() + ",Path:" + uri.getPath() +
                 ",PathSegment:" + uri.getPathSegments());
         CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(this);
         CookieManager cookieManager = CookieManager.getInstance();
@@ -85,7 +89,6 @@ public class BrowserAct extends ToolbarActivity {
     protected void loadWebFromIntent(Intent intent){
         Uri uri = intent.getData();
         syncCookieIfNeed(uri);
-        ILog.i("web load Uri " + uri.toString());
         mWebView.loadUrl(uri.toString());
     }
 

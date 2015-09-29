@@ -48,4 +48,5 @@
         <item name="android:background">@color/colorItemAddressSelected</item>
     </style>
     <color name="colorItemAddressSelected">#23000000</color>
+
 </resources>
