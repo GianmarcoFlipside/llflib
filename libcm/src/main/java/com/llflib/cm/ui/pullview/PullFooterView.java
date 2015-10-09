@@ -48,25 +48,25 @@ public class PullFooterView extends RelativeLayout implements IPull{
 
     @Override public boolean setNormalHit() {
         mBar.setVisibility(INVISIBLE);
-        mHitTv.setText(R.string.llf_hit_pull);
+        mHitTv.setText(R.string.cm_hit_pull);
         return true;
     }
 
     @Override public boolean setReadyHit() {
         mBar.setVisibility(INVISIBLE);
-        mHitTv.setText(R.string.llf_hit_release);
+        mHitTv.setText(R.string.cm_hit_release);
         return true;
     }
 
     @Override public boolean setLoadingHit() {
         mBar.setVisibility(VISIBLE);
-        mHitTv.setText(R.string.llf_state_loading);
+        mHitTv.setText(R.string.cm_state_loading);
         return true;
     }
 
     @Override public boolean setErrorHit() {
         mBar.setVisibility(INVISIBLE);
-        mHitTv.setText(R.string.llf_hit_failed);
+        mHitTv.setText(R.string.cm_net_failed);
         return true;
     }
 }

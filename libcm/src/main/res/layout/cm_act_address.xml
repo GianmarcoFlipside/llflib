@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true">
     <include layout="@layout/cm_layout_title" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:background="@drawable/cm_bg_tool_bar"/>
+        android:layout_height="wrap_content" android:background="@drawable/cm_bg_tool_bar"
+        android:layout_alignParentTop="true"/>
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:id="@+id/text" style="@style/ItemAddress.Selected"/>
+        android:layout_below="@id/toolbar" style="@style/ItemAddress.Selected"
+        android:id="@+id/title" />
     <android.support.v7.widget.RecyclerView android:id="@+id/listview"
-        android:layout_width="match_parent" android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_below="@id/title"/>
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@+id/load_progress" android:indeterminate="false"
+        android:layout_centerInParent="true"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_below="@id/load_progress" android:layout_centerHorizontal="true"
+        android:id="@+id/load_text" android:text="Loading..." />
+</RelativeLayout>

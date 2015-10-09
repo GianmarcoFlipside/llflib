@@ -9,5 +9,5 @@
     <TextView android:id="@+id/sv_txt_load" android:layout_width="wrap_content"
               android:layout_height="wrap_content" android:layout_below="@id/sv_progree_load"
               android:layout_centerHorizontal="true"
-              android:text="@string/llf_state_loading"/>
+              android:text="@string/cm_state_loading"/>
 </merge>

@@ -8,7 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -16,10 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.llflib.cm.R;
+
+import java.util.Arrays;
 
 import timber.log.Timber;
 
@@ -27,6 +30,11 @@ import timber.log.Timber;
  * Created by llf on 2015/8/31.
  */
 public class Views {
+    private static final CharSequence[] EDIT_FORMATS = {" ", "-"};
+    private static final int[][] EDIT_POS ={
+            {3,8,13},
+            {4,6},
+    };
 
     public static int getDimenPx(Context ctx, int value) {
         return getDimenPx(ctx, value, TypedValue.COMPLEX_UNIT_DIP);
@@ -46,6 +54,36 @@ public class Views {
         return getStateDrawable(new ColorDrawable(focused), new ColorDrawable(normal));
     }
 
+    /**
+     * 设置格式
+     *
+     * @param tv
+     * @param type 0:手机号;1:日期
+     */
+    public static void setEditTextFormat(final EditText tv, int type) {
+        final CharSequence fix = EDIT_FORMATS[type];
+        final int[] pos = EDIT_POS[type];
+        tv.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (count == 1) {
+                    int length = s.toString().length();
+                    if(Arrays.binarySearch(pos,0,pos.length,length) >= 0){
+                        tv.append(fix);
+                        tv.setSelection(length +fix.length());
+                    }
+                }
+            }
+
+            @Override public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
     public static Drawable getStateDrawable(Drawable focused, Drawable normal) {
         StateListDrawable sd = new StateListDrawable();
         sd.addState(new int[]{android.R.attr.state_focused}, focused);
@@ -55,13 +93,14 @@ public class Views {
         return sd;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public static void setupFullScreen(Activity act){
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public static void setupFullScreen(Activity act) {
         int sdk = Build.VERSION.SDK_INT;
-        if(sdk < 14) act.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        else if(sdk < 16){
+        if (sdk < 14)
+            act.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        else if (sdk < 16) {
             View root = act.getWindow().getDecorView();
             root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        }else{
+        } else {
             View root = act.getWindow().getDecorView();
             root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
@@ -72,7 +111,7 @@ public class Views {
         if (Build.VERSION.SDK_INT < 21 || parent == null || parent.getChildCount() == 0)
             return;
         View child = parent.getChildAt(0);
-        if(!child.getFitsSystemWindows())
+        if (!child.getFitsSystemWindows())
             return;
         final Resources.Theme theme = act.getTheme();
         final TypedValue outValue = new TypedValue();
@@ -118,12 +157,12 @@ public class Views {
         parent.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static void setApplyWindowInsertEmpty(Activity act){
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static void setApplyWindowInsertEmpty(Activity act) {
         final ViewGroup parent = (ViewGroup) act.findViewById(android.R.id.content);
         if (Build.VERSION.SDK_INT < 21 || parent == null || parent.getChildCount() == 0)
             return;
         View child = parent.getChildAt(0);
-        if(!child.getFitsSystemWindows())
+        if (!child.getFitsSystemWindows())
             return;
         final Resources.Theme theme = act.getTheme();
         final TypedValue outValue = new TypedValue();
@@ -139,7 +178,7 @@ public class Views {
         if (child.getClass().getName().contains("android.support.design"))
             return;
         View view = parent.findViewById(android.R.id.statusBarBackground);
-        if(view != null){
+        if (view != null) {
             parent.removeView(view);
             View content = parent.getChildAt(0);
             ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) content.getLayoutParams();

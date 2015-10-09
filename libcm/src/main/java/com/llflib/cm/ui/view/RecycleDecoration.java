@@ -3,20 +3,22 @@ package com.llflib.cm.ui.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class RecycleDecoration extends RecyclerView.ItemDecoration {
-    static final int[] ATTRS = {android.R.attr.listDivider};
+    static final int[] ATTRS = {android.R.attr.listDivider,android.R.attr.dividerHeight};
 
-    private int mItemMargins;
     private Drawable mDivider;
+    private int mDividerHeight;
 
     public RecycleDecoration(Context ctx){
-        this(ctx,true,0);
+        this(ctx,true,-1);
     }
 
     public RecycleDecoration(Context ctx,int margin){
@@ -27,9 +29,10 @@ public class RecycleDecoration extends RecyclerView.ItemDecoration {
         if (hasDivider) {
             TypedArray a = ctx.obtainStyledAttributes(ATTRS);
             mDivider = a.getDrawable(0);
+            mDividerHeight = a.getDimensionPixelOffset(1,0);
             a.recycle();
         }
-        mItemMargins = itemMargins;
+        mDividerHeight = Math.max(itemMargins,mDividerHeight);
     }
 
     private boolean isVertical(RecyclerView parent) {
@@ -65,7 +68,7 @@ public class RecycleDecoration extends RecyclerView.ItemDecoration {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) child.getLayoutParams();
             int top = lp.bottomMargin + child.getBottom();
-            int bottom = top + mDivider.getIntrinsicHeight();
+            int bottom = top + mDividerHeight;
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
@@ -78,33 +81,35 @@ public class RecycleDecoration extends RecyclerView.ItemDecoration {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) child.getLayoutParams();
             int left = lp.rightMargin + child.getRight();
-            int right = left + mDivider.getIntrinsicWidth();
+            int right = left + mDividerHeight;
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
     }
 
     @Override public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        if(mDividerHeight == 0)
+            return;
         if(isVertical(parent)){
-            outRect.left = mItemMargins;
-            outRect.right = mItemMargins;
+            outRect.left = mDividerHeight;
+            outRect.right = mDividerHeight;
             if(mDivider == null){
-                outRect.bottom = mItemMargins;
+                outRect.bottom = mDividerHeight;
                 if(parent.indexOfChild(view) == 0)
-                    outRect.top = mItemMargins;
+                    outRect.top = mDividerHeight;
             }else{
-                outRect.bottom = mDivider.getIntrinsicHeight();
+                outRect.bottom = mDividerHeight;
                 outRect.top = 0;
             }
         }else{
-            outRect.top = mItemMargins;
-            outRect.bottom = mItemMargins;
+            outRect.top = mDividerHeight;
+            outRect.bottom = mDividerHeight;
             if(mDivider == null){
-                outRect.right = mItemMargins;
+                outRect.right = mDividerHeight;
                 if(parent.indexOfChild(view) == 0)
-                    outRect.left = mItemMargins;
+                    outRect.left = mDividerHeight;
             }else{
-                outRect.right = mDivider.getIntrinsicWidth();
+                outRect.right = mDividerHeight;
                 outRect.left = 0;
             }
         }

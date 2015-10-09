@@ -2,6 +2,7 @@
 <resources>
     <!--common-->
     <dimen name="list_text_item">48dp</dimen>
+    <dimen name="user_head_bg">223dp</dimen>
     <dimen name="tabs_height">72dp</dimen>
     <!-- margin-->
     <dimen name="margin">16dp</dimen>

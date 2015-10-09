@@ -1,9 +1,11 @@
 <resources>
-    <string name="llf_state_wait">Waiting…</string>
-    <string name="llf_state_loading">Loading…</string>
-    <string name="llf_hit_empty">Nothing</string>
-    <string name="llf_hit_pull">Pull up to loading</string>
-    <string name="llf_hit_release">Release to loading</string>
-    <string name="llf_hit_more">Click to load more</string>
-    <string name="llf_hit_failed">Load failed,Click to retry</string>
+    <string name="cm_state_wait">Waiting…</string>
+    <string name="cm_state_loading">加载…</string>
+    <string name="cm_hit_empty">什么也没有</string>
+    <string name="cm_hit_pull">下拉刷新</string>
+    <string name="cm_hit_release">松开加载</string>
+    <string name="cm_hit_more">点击加载更多</string>
+    <string name="cm_net_failed">加载失败</string>
+    <string name="cm_net_hit">请检查网络设置</string>
+    <string name="cm_net_set">设置</string>
 </resources>

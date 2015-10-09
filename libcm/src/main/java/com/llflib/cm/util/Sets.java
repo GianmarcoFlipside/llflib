@@ -19,7 +19,7 @@ public class Sets {
 
     public static void clearCache(final Context ctx,final Handler h){
         final ProgressDialog pd = new ProgressDialog(ctx);
-        pd.setMessage(ctx.getString(R.string.llf_state_wait));
+        pd.setMessage(ctx.getString(R.string.cm_state_wait));
         pd.show();
         new Thread(){
             @Override public void run() {

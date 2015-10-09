@@ -5,12 +5,17 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.llflib.cm.R;
+import com.llflib.cm.util.Nets;
 
 /**
  * Created by llf on 2015/7/10.
@@ -55,6 +60,22 @@ public abstract class ToolbarActivity extends AppCompatActivity {
     }
 
     protected <X> void onPostLoading(X x) {
+    }
+
+    public void showHit(String msg) {
+        if (TextUtils.isEmpty(msg))
+            return;
+        Snackbar.make(findViewById(Window.ID_ANDROID_CONTENT), msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    public void showNetHit(){
+        Snackbar bar = Snackbar.make(findViewById(Window.ID_ANDROID_CONTENT),getString(R.string.cm_net_hit), Snackbar.LENGTH_LONG);
+        bar.setAction(R.string.cm_net_set, new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Nets.startNetworkSettings(ToolbarActivity.this);
+            }
+        });
+        bar.show();
     }
 
     @Override public void startActivityForResult(Intent intent, int requestCode, Bundle options) {

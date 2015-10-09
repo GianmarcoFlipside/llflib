@@ -15,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.llflib.cm.R;
@@ -40,6 +43,8 @@ public class PickAddressAct extends ToolbarActivity {
     Handler mWorkHandler, mUIHandler;
 
     private TextView mAddressTv;
+    private RecyclerView mListView;
+    private View mLoadProgress,mLoadText;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_act_address);
@@ -71,13 +76,16 @@ public class PickAddressAct extends ToolbarActivity {
         getTheme().resolveAttribute(R.attr.colorPrimary, outValue, true);
         ab.setBackgroundDrawable(new ColorDrawable(outValue.data));
 
-        mAddressTv = (TextView) findViewById(R.id.text);
-        final RecyclerView listView = (RecyclerView) findViewById(R.id.listview);
-        listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        listView.addItemDecoration(new RecycleDecoration(this));
+        mAddressTv = (TextView) findViewById(R.id.title);
+        mLoadProgress = findViewById(R.id.load_progress);
+        mLoadText = findViewById(R.id.load_text);
+        mListView = (RecyclerView) findViewById(R.id.listview);
+        mListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mListView.addItemDecoration(new RecycleDecoration(this));
+        mListView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this,R.anim.list_layout));
         //data;
         mAdapter = new AddressAdapter(new ArrayList<AddressHelper.Bean>());
-        listView.setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);
 
         mAddressLevel = 0;
         mAddressTv.setText("");
@@ -116,6 +124,20 @@ public class PickAddressAct extends ToolbarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override protected <X> void onPreLoading(X x) {
+        super.onPreLoading(x);
+        mLoadProgress.setVisibility(View.VISIBLE);
+        mLoadText.setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.GONE);
+    }
+
+    @Override protected <X> void onPostLoading(X x) {
+        super.onPostLoading(x);
+        mLoadProgress.setVisibility(View.GONE);
+        mLoadText.setVisibility(View.GONE);
+        mListView.setVisibility(View.VISIBLE);
+    }
+
     static class WorkHandler extends Handler {
         private SoftReference<PickAddressAct> mCtx;
 
@@ -128,6 +150,11 @@ public class PickAddressAct extends ToolbarActivity {
             final PickAddressAct ctx = mCtx.get();
             if (ctx == null)
                 return;
+            ctx.mUIHandler.post(new Runnable() {
+                @Override public void run() {
+                    ctx.onPreLoading(null);
+                }
+            });
             List<AddressHelper.Bean> list;
             switch (msg.what) {
                 case 0:
@@ -143,7 +170,9 @@ public class PickAddressAct extends ToolbarActivity {
             final List<AddressHelper.Bean> l = list;
             ctx.mUIHandler.post(new Runnable() {
                 @Override public void run() {
+                    ctx.onPostLoading(null);
                     ctx.mAdapter.setNewList(l);
+                    ctx.mListView.startLayoutAnimation();
                 }
             });
         }
