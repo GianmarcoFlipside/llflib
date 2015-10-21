@@ -1,7 +1,5 @@
 package com.llflib.cm.db;
 
-import java.util.List;
-
 /**
  * Created by llf on 2015/9/28.
  */

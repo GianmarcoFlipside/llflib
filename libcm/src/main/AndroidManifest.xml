@@ -1,5 +1,7 @@
 <manifest package="com.llflib.cm"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application>
         <activity android:name=".ui.BrowserAct" android:configChanges="screenSize|orientation"
             android:screenOrientation="portrait" />

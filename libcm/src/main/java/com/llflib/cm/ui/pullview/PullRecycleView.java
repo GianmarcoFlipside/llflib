@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import timber.log.Timber;
-
 
 /**
  * Created by llf on 2015/8/25.

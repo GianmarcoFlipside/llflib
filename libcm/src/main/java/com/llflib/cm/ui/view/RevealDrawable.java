@@ -2,7 +2,6 @@ package com.llflib.cm.ui.view;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,7 +14,6 @@ import android.graphics.Region;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 
 import java.util.Arrays;
