@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#000">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_photos" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:background="@color/img_mask_dark">
+        <Button android:id="@+id/button" android:background="@null"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin" android:layout_marginRight="@dimen/margin"
+            android:gravity="center" android:text="@string/all_image"
+            android:textColor="@color/img_text_color" android:textSize="16sp"/>
+        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin" android:layout_marginRight="@dimen/margin"
+            android:id="@+id/preview" android:text="@string/img_preview"
+            android:textColor="@color/img_text_color" android:background="@null"
+            android:enabled="false" android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<FrameLayout android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true">
+    <fragment android:id="@+id/photoPickerFragment"
+        android:name="me.iwf.photopicker.fragment.PhotoPickerFragment"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_gravity="top" android:layout_marginTop="?attr/actionBarSize"/>
+    <include layout="@layout/cm_layout_title"/>
+</FrameLayout>
