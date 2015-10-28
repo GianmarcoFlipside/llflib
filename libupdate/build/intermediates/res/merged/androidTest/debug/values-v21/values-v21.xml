@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/develop/work_as/Joke/libupdate/build/intermediates/bundles/debug/res/values-v21/values-v21.xml -->
+    <eat-comment/>
+    <style name="UP.Widget.ProgressBar.Horizontal" parent="android:Widget.Material.ProgressBar.Horizontal"/>
+</resources>

@@ -116,6 +116,13 @@ public class Files {
         return new String(buffer,encoding);
     }
 
+    public static String getFileName(String path){
+        int idx = path.lastIndexOf(File.separatorChar);
+        if(idx < 0 || idx == path.length()-1)
+            idx = Math.max(0,path.length() - 8);
+        return path.substring(idx+1);
+    }
+
     public static boolean deleteFile(File f){
         if(f == null || !f.exists())
             return false;
@@ -128,6 +135,23 @@ public class Files {
             }
         }
         return f.delete();
+    }
+
+    public static String getFormatSize(long size){
+        Timber.i("Format size "+size);
+        if(size == 0)
+            return "";
+        final int limit = 512;
+        if(size < limit){
+            return String.format("%dB",size);
+        }
+        if(size < limit*1024){
+            return String.format("%.2fKB",size/1024.0);
+        }
+        if(size < limit*1024*1024){
+            return String.format("%.2fMB",size/(1024*1024.0));
+        }
+        return String.format("%.2fGB", size / (1024 * 1024 * 1024.0));
     }
 
 }

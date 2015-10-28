@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+        android:scaleType="fitCenter" android:id="@android:id/icon"
+        android:layout_centerVertical="true" android:layout_margin="6dp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_toRightOf="@android:id/icon" android:layout_toEndOf="@android:id/icon"
+        android:layout_alignParentTop="true" android:layout_marginTop="6dp"
+        android:textSize="18sp" android:textColor="@color/up_cancel_color"
+        android:id="@android:id/title" android:layout_marginBottom="6dp"/>
+    <ProgressBar android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:layout_alignLeft="@android:id/title" android:layout_alignStart="@android:id/title"
+        android:layout_below="@android:id/title" android:layout_marginRight="6dp" android:layout_marginEnd="6dp"
+        android:id="@android:id/progress" style="@style/UP.Widget.ProgressBar.Horizontal"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignRight="@android:id/progress" android:layout_alignEnd="@android:id/progress"
+        android:textSize="14sp" android:textColor="@color/up_message_color"
+        android:id="@android:id/summary" android:layout_above="@android:id/progress"/>
+</RelativeLayout>

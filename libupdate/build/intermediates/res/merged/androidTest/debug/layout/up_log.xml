@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:background="@drawable/up_window_back">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@android:id/title" android:textSize="20sp"
+        android:layout_margin="16dp" android:layout_alignParentTop="true"
+        android:textColor="@color/up_cancel_color"/>
+    <ScrollView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_below="@android:id/title" android:fillViewport="true"
+        android:id="@+id/content" android:scrollbars="none" android:layout_margin="16dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@android:id/message" android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/up_message_color"/>
+    </ScrollView>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@android:id/button1" android:background="@null" android:textColor="@color/up_ok_color"
+        android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+        android:layout_below="@+id/content"
+        android:layout_margin="16dp" android:text="@android:string/ok"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@android:id/button2" android:background="@null" android:textColor="@color/up_cancel_color"
+        android:layout_toLeftOf="@android:id/button1" android:layout_toStartOf="@android:id/button1"
+        android:layout_below="@+id/content" android:layout_margin="16dp" android:text="@android:string/no"/>
+</RelativeLayout><!-- From: file:/D:/develop/work_as/Joke/libupdate/src/main/res/layout/up_log.xml --><!-- From: file:/D:/develop/work_as/Joke/libupdate/build/intermediates/bundles/debug/res/layout/up_log.xml -->

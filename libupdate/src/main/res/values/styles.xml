@@ -6,4 +6,6 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="UP.Widget.ProgressBar.Horizontal" parent="android:Widget.ProgressBar.Horizontal" />
 </resources>

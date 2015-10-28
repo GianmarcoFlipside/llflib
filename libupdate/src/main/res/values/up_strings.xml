@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="up_check_error">升级失败，请查看网络</string>
-    <string name="up_down_error">下载失败，请查看网络</string>
+    <color name="up_bk">#fdfdfe</color>
+    <color name="up_ok_color">#259cec</color>
+    <color name="up_cancel_color">#000000</color>
+    <color name="up_message_color">#8f8f8f</color>
+
+    <string name="up_net_hit">温馨提示</string>
+    <string name="up_net_mobile">当前为移动网络，确定要继续下载吗？</string>
+    <string name="up_net_nothing">当前无网络连接，请先设置网络</string>
+    <string name="up_check_error">网络错误，请检测网络</string>
+    <string name="up_down_retry">下载失败，请点击重试</string>
     <string name="up_check_news">己是最新版本</string>
     <string name="up_down_trick">开始下载升级包</string>
+    <string name="up_checking">正在检测…</string>
     <string name="up_down_finish">下载完成</string>
     <string name="up_down_store">请确保有足够的存储空间下载新版本</string>
+
+    <string name="up_btn_setting">设置</string>
 </resources>

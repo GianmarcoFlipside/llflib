@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -15,7 +14,6 @@ import java.util.List;
  * Created by llf on 2015/8/10.
  */
 public class UpdateHelper {
-
     /**
      * 检测升级
      *
@@ -26,7 +24,6 @@ public class UpdateHelper {
     public static void checkUpdate(Context ctx, String url) {
         checkUpdate(ctx, url, false);
     }
-
     /**
      * 检测升级
      *
@@ -46,10 +43,16 @@ public class UpdateHelper {
     /**
      * 下载更新
      */
-    static void downloadUpdate(Context ctx, CharSequence url) {
+    static void downloadUpdate(Context ctx,CheckBean bean) {
         Intent intent = new Intent(ctx, DownloadService.class);
-        intent.putExtra(DownloadService.EXTRA_URL, url);
         intent.putExtra(DownloadService.EXTRA_TASK,DownloadService.TASK_ID_DOWN);
+        intent.putExtra(DownloadService.EXTRA_URL, bean);
+        ctx.startService(intent);
+    }
+
+    static void cancelCheckUpdate(Context ctx){
+        Intent intent = new Intent(ctx, DownloadService.class);
+        intent.putExtra(DownloadService.EXTRA_TASK, DownloadService.TASK_ID_CANCEL);
         ctx.startService(intent);
     }
 
@@ -58,7 +61,7 @@ public class UpdateHelper {
      */
     public static void showCheckHit(Context ctx) {
         Intent intent = new Intent(ctx, UpdateHitActivity.class);
-        intent.putExtra(UpdateHitActivity.EXTRA_MODE_TYPE, UpdateHitActivity.MODE_CHECK_HIT);
+        intent.putExtra(UpdateHitActivity.EXTRA_MODE_TYPE, UpdateHitActivity.MODE_CHECK_LOADING);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
     }
@@ -66,12 +69,10 @@ public class UpdateHelper {
     /**
      * 显示升级内容
      */
-    public static void showUpdateLog(Context ctx, String title, String message, String url) {
+    public static void showUpdateLog(Context ctx,CheckBean bean) {
         Intent intent = new Intent(ctx, UpdateHitActivity.class);
         intent.putExtra(UpdateHitActivity.EXTRA_MODE_TYPE, UpdateHitActivity.MODE_UPDATE_LOG);
-        intent.putExtra(UpdateHitActivity.EXTRA_HIT_TITLE, title);
-        intent.putExtra(UpdateHitActivity.EXTRA_HIT_MESSAGE, message);
-        intent.putExtra(DownloadService.EXTRA_URL, url);
+        intent.putExtra(DownloadService.EXTRA_URL, bean);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
     }
@@ -96,6 +97,24 @@ public class UpdateHelper {
     static void showCheckMessage(Context ctx, CharSequence sequence) {
         Toast.makeText(ctx, sequence, Toast.LENGTH_SHORT).show();
     }
+    /**
+     * 显示设置网络提示
+     * */
+    static void showNoNet(Context ctx,CheckBean bean){
+        Intent intent = new Intent(ctx, UpdateHitActivity.class);
+        intent.putExtra(UpdateHitActivity.EXTRA_MODE_TYPE, UpdateHitActivity.MODE_NET_SETTING);
+        intent.putExtra(DownloadService.EXTRA_URL, bean);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(intent);
+    }
+
+    static void showNetType(Context ctx,CheckBean bean){
+        Intent intent = new Intent(ctx, UpdateHitActivity.class);
+        intent.putExtra(UpdateHitActivity.EXTRA_MODE_TYPE, UpdateHitActivity.MODE_NET_TYPE);
+        intent.putExtra(DownloadService.EXTRA_URL, bean);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(intent);
+    }
 
     /**
      * 下载更新包完成后的安装操作
@@ -105,9 +124,5 @@ public class UpdateHelper {
         intent.setDataAndType(Uri.fromFile(apk), "application/vnd.android.package-archive");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
-    }
-
-    static void updateDownloadState(Context ctx ,int total,int progress){
-
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/up_bk" />
+    <corners android:radius="3dp" />
+    <padding android:bottom="16dp" android:top="16dp" android:left="16dp"
+        android:right="16dp" />
+</shape><!-- From: file:/D:/develop/work_as/Joke/libupdate/src/main/res/drawable/up_window_back.xml --><!-- From: file:/D:/develop/work_as/Joke/libupdate/build/intermediates/bundles/debug/res/drawable/up_window_back.xml -->
